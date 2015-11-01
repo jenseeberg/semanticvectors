@@ -216,7 +216,7 @@ public class TermTermVectorsFromLucene { //implements VectorStore {
     // If not retraining, create random elemental vectors as well.
     int tc = 0;
     for (String fieldName : flagConfig.contentsfields()) {
-      TermsEnum terms = this.luceneUtils.getTermsForField(fieldName).iterator(null);
+      TermsEnum terms = this.luceneUtils.getTermsForField(fieldName).iterator();
       BytesRef bytes;
       while((bytes = terms.next()) != null) {
         Term term = new Term(fieldName, bytes);
@@ -297,7 +297,7 @@ public class TermTermVectorsFromLucene { //implements VectorStore {
     ArrayList<Integer> freqs = new ArrayList<Integer>();
     Hashtable<Integer, Integer> localTermPositions = new Hashtable<Integer, Integer>();
 
-    TermsEnum termsEnum = terms.iterator(null);
+    TermsEnum termsEnum = terms.iterator();
     BytesRef text;
     int termcount = 0;
 

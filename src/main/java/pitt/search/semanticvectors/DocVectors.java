@@ -145,7 +145,7 @@ public class DocVectors implements VectorStore {
 
             if (flagConfig.fieldweight()) {
               //field weight: 1/sqrt(number of terms in field)
-              TermsEnum terms = luceneUtils.getTermVector(docsEnum.docID(), fieldName).iterator(null);
+              TermsEnum terms = luceneUtils.getTermVector(docsEnum.docID(), fieldName).iterator();
               int numTerms = 0;
               while (terms.next() != null) {
                 numTerms++;

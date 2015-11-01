@@ -94,7 +94,7 @@ public class LSA {
     TermsEnum termsEnumDummy = null; // Empty terms enum, encouraged for reuse in Lucene documentation.
     SMat S;
     Terms terms = this.luceneUtils.getTermsForField(contentsField);
-    TermsEnum termsEnumForCount = terms.iterator(termsEnumDummy);
+    TermsEnum termsEnumForCount = terms.iterator();
     int numTerms = 0;
     while (termsEnumForCount.next() != null) {
       numTerms++;
@@ -108,7 +108,7 @@ public class LSA {
     int nonZeroVals = 0, termCounter = 0;
 
     terms = this.luceneUtils.getTermsForField(contentsField);
-    TermsEnum termsEnum = terms.iterator(termsEnumDummy);
+    TermsEnum termsEnum = terms.iterator();
     BytesRef bytes;
     
     // This first loop is all setup and preparing counters.
@@ -141,7 +141,7 @@ public class LSA {
     S = new SMat(this.luceneUtils.getNumDocs(), termCounter, nonZeroVals);
 
     // Populate "SVDLIBJ" sparse data structure.
-    termsEnum = terms.iterator(termsEnum);
+    termsEnum = terms.iterator();
     termCounter = 0;
     int firstNonZero = 0; // Index of first non-zero entry (document) of each column (term).
     while((bytes = termsEnum.next()) != null) {

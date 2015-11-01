@@ -128,7 +128,7 @@ public class TermVectorsFromLucene {
 
     for (String fieldName : flagConfig.contentsfields()) {
       Terms termsForField = this.luceneUtils.getTermsForField(fieldName);
-      TermsEnum terms = termsForField.iterator(termsEnum);
+      TermsEnum terms = termsForField.iterator();
       int tc = 0;
       while (terms.next() != null) {
         tc++;
@@ -139,7 +139,7 @@ public class TermVectorsFromLucene {
     for(String fieldName : flagConfig.contentsfields()) {
       VerbatimLogger.info("Training term vectors for field " + fieldName + "\n");
       int tc = 0;
-      TermsEnum terms = this.luceneUtils.getTermsForField(fieldName).iterator(termsEnum);
+      TermsEnum terms = this.luceneUtils.getTermsForField(fieldName).iterator();
       BytesRef bytes;
       while ((bytes = terms.next()) != null) {
         // Output progress counter.
@@ -209,7 +209,7 @@ public class TermVectorsFromLucene {
       logger.info("Generating new elemental term vectors");
       this.termVectors = new ElementalVectorStore(flagConfig);
       for(String fieldName : flagConfig.contentsfields()) {
-        TermsEnum terms = luceneUtils.getTermsForField(fieldName).iterator(termsEnum);
+        TermsEnum terms = luceneUtils.getTermsForField(fieldName).iterator();
         BytesRef bytes;
         while ((bytes = terms.next()) != null) {
           Term term = new Term(fieldName, bytes);

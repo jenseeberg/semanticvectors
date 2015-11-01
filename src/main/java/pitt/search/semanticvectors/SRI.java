@@ -137,7 +137,7 @@ public class SRI implements VectorStore {
         ArrayList<Integer> freqs = new ArrayList<Integer>();
         Hashtable<Integer, Integer> localTermPositions = new Hashtable<Integer, Integer>();
 
-        TermsEnum termsEnum = terms.iterator(null);
+        TermsEnum termsEnum = terms.iterator();
         BytesRef text;
         int termcount = 0;
 
@@ -252,7 +252,7 @@ public class SRI implements VectorStore {
     }
     for (String fieldName : this.flagConfig.contentsfields()) {
       Terms terms = this.lUtils.getTermsForField(fieldName);
-      TermsEnum termEnum = terms.iterator(null);
+      TermsEnum termEnum = terms.iterator();
       int tc = 0;
 
       BytesRef bytes;

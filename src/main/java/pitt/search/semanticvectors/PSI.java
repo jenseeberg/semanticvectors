@@ -101,7 +101,7 @@ public class PSI {
             fieldName, flagConfig.luceneindexpath()));
       }
 
-      TermsEnum termsEnum = terms.iterator(null);
+      TermsEnum termsEnum = terms.iterator();
       BytesRef bytes;
       while((bytes = termsEnum.next()) != null) {
         Term term = new Term(fieldName, bytes);
@@ -123,7 +123,7 @@ public class PSI {
     // Now elemental vectors for the predicate field.
     Terms predicateTerms = luceneUtils.getTermsForField(PREDICATE_FIELD);
     String[] dummyArray = new String[] { PREDICATE_FIELD };  // To satisfy LuceneUtils.termFilter interface.
-    TermsEnum termsEnum = predicateTerms.iterator(null);
+    TermsEnum termsEnum = predicateTerms.iterator();
     BytesRef bytes;
     while((bytes = termsEnum.next()) != null) {
       Term term = new Term(PREDICATE_FIELD, bytes);
@@ -141,7 +141,7 @@ public class PSI {
     String fieldName = PREDICATION_FIELD; 
     // Iterate through documents (each document = one predication).
     Terms allTerms = luceneUtils.getTermsForField(fieldName);
-    termsEnum = allTerms.iterator(null);
+    termsEnum = allTerms.iterator();
     while((bytes = termsEnum.next()) != null) {
       int pc = 0;
       Term term = new Term(fieldName, bytes);

@@ -91,7 +91,7 @@ public class IncrementalTermVectors implements VectorStore {
 
     for (String fieldName : this.flagConfig.contentsfields()) {
       Terms terms = this.luceneUtils.getTermsForField(fieldName);
-      TermsEnum termEnum = terms.iterator(null);
+      TermsEnum termEnum = terms.iterator();
       int tc = 0;
 
       BytesRef bytes;
@@ -155,7 +155,7 @@ public class IncrementalTermVectors implements VectorStore {
           Terms docTerms = this.luceneUtils.getTermVector(dc, fieldName);
           if (docTerms == null) {logger.severe("No term vector for document "+dc); continue; }
 
-          TermsEnum termsEnum = docTerms.iterator(null);
+          TermsEnum termsEnum = docTerms.iterator();
 
           BytesRef bytes;
           while ((bytes = termsEnum.next()) != null) {

@@ -135,7 +135,7 @@ public class IncrementalDocVectors {
         }
 
         TermsEnum tmp = null;
-        TermsEnum termsEnum = terms.iterator(tmp);
+        TermsEnum termsEnum = terms.iterator();
         BytesRef bytes;
         while ((bytes = termsEnum.next()) != null) {
           Term term = new Term(fieldName, bytes);
