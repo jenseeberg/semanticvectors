@@ -30,7 +30,7 @@
     </scm>
 
     <properties>
-        <luceneversion>5.0.0</luceneversion>
+        <luceneversion>5.3.0</luceneversion>
         <!-- Override using "mvn install -DskipTests=false". -->
         <skipTests>true</skipTests>
         <attachDependencySources>false</attachDependencySources>
